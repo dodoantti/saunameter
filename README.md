@@ -24,10 +24,19 @@ ESP8266 support to Arduino IDE was achieved by installing ESP8266 Arduino Addon.
 can be found at https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/installing-the-esp8266-arduino-addon .
 
 
-
 ### Hardware
+Attach DS18B20 sensor's positive wire to +3.3V, negative wire to GND and data wire to D4 (it's called GPIO2 in software).
+At least in my copy of the sensor positive wire is red, ground black, and data white, but yours may be different.
+
+DON'T attach positive wire to +5V if you don't want to kill your ESP8266 !!!
+
+As far as I know WeMos ESP8266 boards can't be powered by attaching 5V to 5V pin. I'm using USB cable to attach 5V to board.
+
+
+### Casing
 Folder includes 3D drawings for the casing of WeMos D1 mini. Drawings are made on SolidWorks Educational Edition 2017 
-and are included in .sldprt and .stl formats. 
+and are included in .sldprt and .stl formats. I've heard that non-educational editions of Solidworks may not work
+with files made in Educational Edition.
 
 In my specific application the casing is attached to bar with zipties, so I made version of bottom of the casing with
 clips for this. If you don't need clips for your application consider printing bottom half version without clips.
