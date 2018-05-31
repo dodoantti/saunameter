@@ -28,7 +28,7 @@ can be found at https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/
 Attach DS18B20 sensor's positive wire to +3.3V, negative wire to GND and data wire to D4 (it's called GPIO2 in software).
 At least in my copy of the sensor positive wire is red, ground black, and data white, but yours may be different.
 
-DON'T attach positive wire to +5V if you don't want to kill your ESP8266 !!!
+DON'T attach sensor's positive wire to +5V if you don't want to kill your ESP8266 !!!
 
 As far as I know WeMos ESP8266 boards can't be powered by attaching 5V to 5V pin. I'm using USB cable to attach 5V to board.
 
