@@ -37,6 +37,6 @@ Case is attached by 4 * M3 screws.
 
 ### Other notifications
 For the love of god, use waterproof DS18B20 sensor. Don't be idiot and destroy the steam insulation of your sauna 
-walls when installing the meter. Casing for the ESP8266 won't be waterproof, at least without using silicone to . 
-I have no idea how the microcontroller will behave in hot conditions, so I wouldn't recommend installing ESP8266 
-inside your sauna.
+walls when installing the meter. Casing for the ESP8266 won't be waterproof, at least without using silicone for
+sealing it. I have no idea how the microcontroller will behave in hot conditions, so I wouldn't recommend installing 
+ESP8266 inside your sauna.
