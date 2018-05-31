@@ -13,9 +13,16 @@ hopefully resolving the connection problem. Information about reconnecting will 
 
 ### Libraries
 Code was succesfully compiled and tested with following libraries:
-ThingSpeak (by MathWorks), Version 1.3.3.
+
+ThingSpeak (by MathWorks), Version 1.3.3
+
 DallasTemperature (by Miles Burton, Tim Newsome, Guil Barros, Rob Tillaart), Version 3.8.0
+
 OneWire (by Jim Studt, Tom Pollard, and multiple more contributers), Version 2.3.4
+
+ESP8266 support to Arduino IDE was achieved by installing ESP8266 Arduino Addon. Instructions for installing the support
+can be found at https://learn.sparkfun.com/tutorials/esp8266-thing-hookup-guide/installing-the-esp8266-arduino-addon .
+
 
 
 ### Hardware
