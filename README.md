@@ -2,13 +2,15 @@
 Software for ESP8266 to plot temperature data to Thingspeak over Wifi.
 
 Code should run on any ESP8266 using DS18B20 sensor.
-You need to set up your own Wifi & Thingspeak settings in the configuration section of the code.
 
 Software measures temp data on specified measuring interval (30 seconds by default) and sends results to ThingSpeak and
 over serial connection for debugging purposes.
 
 Software tries to reconnect if Wifi connection is lost. If reconnection attempts are unsuccesful it will restart ESP8266,
 hopefully resolving the connection problem. Information about reconnecting will be sent over serial connection.
+
+### Configuration
+User must edit Configuration.h file to match the settings he or she wants to use. Other files do not require any changes.
 
 
 ### Libraries

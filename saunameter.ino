@@ -14,26 +14,27 @@
 #include <ThingSpeak.h>
 #include <OneWire.h>
 #include <DallasTemperature.h>
+#include "Configuration.h"
 
-// ******************************** Configuration  ********************************
-// Thingspeak: 
-const char* writeAPI = "WRITE API HERE";      // Channel Write API key
-unsigned long channelID = 000000;             // Channel ID, 6 digit number
-const int dataField = 1;                      // Number of field to which write temperatures to
-// Wifi
-const char* ssid = "MY NETWORK SSID";         // Your network SSID
-const char* password = "MY_PASSWORD";         // Your network password
-// Other configuration
-int measuringInterval = 30000;                // has to be >15000 milliseconds due to ThingSpeak
-int sensorPin = 2;                            // 2 is D4 on board
-// ***************************** End of configuration *****************************
+// Loading user's configuration from Configuration.h values
+const char* writeAPI = THINGSPEAK_KEY;
+unsigned long channelID = THINGSPEAK_ID;
+const int dataField = THINGSPEAK_DATAFIELD;
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
+int sensorType = SENSOR_TYPE;
+int sensorPin = SENSOR_PIN;
+int measuringInterval = MEASURING_INTERVAL;
 
-// Declaring functions
 // Sends temperature data over serial
 void SerialPrintTemp(float temp);
+
 // Reconnects to wifi. Returns true if reconnect is succesful, false if not.
 // Parameter maxTime is the maimum time spent trying to reconnect in milliseconds
 bool ReconnectToWifi(unsigned int maxTime);
+
+// Reads temperature from sensor. Returns the read value.
+float ReadTemperature(int sensor = sensorType);
 
 // Setting up Wifi Client
 WiFiClient client;
@@ -67,7 +68,7 @@ void setup() {
 void loop()
 {
     // Setting up variables
-    float temp = 0;
+    float temperature = 0;
     unsigned long measuringTimer = 0;
 
     // Loop to run measurements and push data to cloud
@@ -79,12 +80,8 @@ void loop()
         // Measures temperature and pushes data when set measuring interval has passed
         if (millis() - measuringTimer >= measuringInterval)
         {
-            // Reading temperature in celsius from first sensor on bus (Index = 0)
-            sensors.requestTemperatures();
-            temp = sensors.getTempCByIndex(0);
-
-            // Reporting results over serial
-            SerialPrintTemp(temp);
+            temperature = ReadTemperature();
+            SerialPrintTemp(temperature);
 
             // Reconnecting if connection is lost
             if(WiFi.status() != WL_CONNECTED)
@@ -97,7 +94,7 @@ void loop()
             }
 
             // Pushing data to ThingSpeak
-            ThingSpeak.setField(dataField, temp);
+            ThingSpeak.setField(dataField, temperature);
             ThingSpeak.writeFields(channelID, writeAPI);
 
             // Resetting timer
@@ -141,4 +138,13 @@ bool ReconnectToWifi(unsigned int maxTime)
     }
     Serial.print("\nReconnected succesfully!");
     return true;
+}
+
+float ReadTemperature(int sensor)
+{
+    if(sensorType == 1){
+        // Reading temperature in celsius from first sensor on bus (Index = 0)
+        sensors.requestTemperatures();
+        return sensors.getTempCByIndex(0);
+    }
 }
